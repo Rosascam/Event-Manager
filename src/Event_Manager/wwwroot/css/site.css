@@ -17,6 +17,15 @@ textarea {
     max-width: 280px;
 }
 
+.jumbotron {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    color: inherit;
+    background-color: #eee;
+    text-align: center;
+}
+
 /* Carousel */
 .carousel-caption p {
     font-size: 20px;
@@ -48,3 +57,6 @@ textarea {
     display: none
   }
 }
+
+
+
