@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.Logging;
 using Event_Manager.Models;
 using Event_Manager.Models.AccountViewModels;
-using Event_Manager.Services;
 
 namespace Event_Manager.Controllers
 {
@@ -51,32 +45,27 @@ namespace Event_Manager.Controllers
                
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded && string.IsNullOrEmpty(_userManager.Users.SingleOrDefault(u=> u.UserName == User.Identity.Name).Name))
-                {
-                  
+                {                  
                     return RedirectToLocal(returnUrl);
                 }
 
                 if (result.Succeeded && !(string.IsNullOrEmpty(_userManager.Users.SingleOrDefault(u => u.UserName == User.Identity.Name).Name)))
-                {
-                    
+                {                  
                     return RedirectToLocal(returnUrl);
-                }
-
-                
+                }                       
 
                 if (result.IsLockedOut)
-                {
-                    
+                {                    
                     return View("Lockout");
                 }
+
                 else
                 {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return View(model);
                 }
             }
-
-            
+                        
             return View(model);
         }
         
@@ -87,8 +76,7 @@ namespace Event_Manager.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
-
-        //
+                
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
@@ -118,8 +106,7 @@ namespace Event_Manager.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
-
-        //
+                
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
@@ -141,8 +128,7 @@ namespace Event_Manager.Controllers
 
             return View(model);
         }
-
-
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogOff()
@@ -157,8 +143,7 @@ namespace Event_Manager.Controllers
         {
             return code == null ? View("Error") : View();
         }
-
-       
+               
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
