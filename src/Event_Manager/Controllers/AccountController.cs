@@ -44,12 +44,12 @@ namespace Event_Manager.Controllers
             {
                
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
-                if (result.Succeeded && string.IsNullOrEmpty(_userManager.Users.SingleOrDefault(u=> u.UserName == User.Identity.Name).Name))
+                if (result.Succeeded && string.IsNullOrEmpty(_userManager.Users.SingleOrDefault(u=> u.UserName == model.Email).Name))
                 {                  
                     return RedirectToLocal(returnUrl);
                 }
 
-                if (result.Succeeded && !(string.IsNullOrEmpty(_userManager.Users.SingleOrDefault(u => u.UserName == User.Identity.Name).Name)))
+                if (result.Succeeded && !(string.IsNullOrEmpty(_userManager.Users.SingleOrDefault(u => u.UserName == model.Email).Name)))
                 {                  
                     return RedirectToLocal(returnUrl);
                 }                       
