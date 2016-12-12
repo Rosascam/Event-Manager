@@ -15,6 +15,9 @@ namespace Event_Manager.Data
         {
         }
 
+        public DbSet<Event> Event { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
