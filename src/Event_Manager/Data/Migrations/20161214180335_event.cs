@@ -14,7 +14,7 @@ namespace Event_Manager.Data.Migrations
                 columns: table => new
                 {
                     EventID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                       .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     EventName = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     date = table.Column<DateTime>(nullable: false),

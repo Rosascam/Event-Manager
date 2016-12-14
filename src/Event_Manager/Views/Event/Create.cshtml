@@ -1,0 +1,35 @@
+﻿@model Event_Manager.Models.Event
+@{
+    ViewData["Title"] = "Create an Event:";
+}
+@inject UserManager<ApplicationUser> UserManager
+<h1>Create an Event:</h1>
+
+
+<form asp-action="Create" method="post">
+
+    <div>
+        <div>Event Name <p><input type="date" name="Name" class="btn-lg"asp-for="Name" value="" /></p></div>
+        <span asp-validation-for="Name"></span>
+
+        <input type="hidden" asp-for="EventName" value=@UserManager.GetUserName(User)>
+
+        <div>Date and Time<p><input type="datetime" name="Date" class="btn-lg" asp-for="date" value =""></p></div>
+        <span asp-validation-for="date"></span>
+                
+        <div>Location <p><input type="text" name="Location" class="btn-lg" asp-for="location" value=""></p></div>
+        <span asp-validation-for="location"></span>
+
+        <div>Genre <p><input type="text" asp-for="genre" value="" /></p></div>
+        <span asp-validation-for="genre"></span>
+          
+        </div>
+
+    <button class="btn btn-info">Add Event</button>
+
+</form>
+
+<form asp-controller="Home" asp-action="Index" method="get">
+    <button>Go Back</button>
+
+</form>
