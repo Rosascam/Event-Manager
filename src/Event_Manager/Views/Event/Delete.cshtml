@@ -1,0 +1,16 @@
+﻿@model Event_Manager.Models.Event
+@{
+    ViewData["Title"] = "Delete an Event:";
+}
+<h3>Delete Event:</h3>
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="EventID" value="@Model.EventID" />
+
+    <button>Delete event</button>
+
+
+</form>
+
+<form asp-controller="Home" asp-action="Index" method="get">
+    <button>Go back</button>
+</form>

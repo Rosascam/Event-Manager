@@ -56,11 +56,78 @@ namespace Event_Manager.Controllers
             }
             return View();
         }
+        [Authorize]
 
-                
+        public IActionResult ReadEvents(int? id)
+        {
+
+            Event e = _context.Event.SingleOrDefault(a => a.EventID == id);
+            return View(e);
+        }
+
+        [Authorize(Roles = "ARTIST")]
+        public IActionResult Update(int? id)
+        {
+
+            Event e = _context.Event.SingleOrDefault(a => a.EventID == id);
+
+            if (_userManager.GetUserName(User) == e.EventName)
+            {
+                return View(e);
             }
+            return RedirectToAction(nameof(HomeController.Index), "Home");
+        }
 
+        [HttpPost]
+        [Authorize(Roles = "ARTIST")]
+        public IActionResult Update(Event e)
+        {
+            string artistName = "";
+            string currentUserName = _userManager.GetUserName(User);
+            foreach (ApplicationUser user in _userManager.Users)
+            {
+                if (user.UserName == currentUserName)
+                {
+                    artistName = user.Name;
+                }
+            }
+            if (ModelState.IsValid)
+            {
+                e.EventName = artistName;
+                _context.Event.Update(e);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+
+            }
+            return View();
+        }
+
+        [Authorize(Roles = "ARTIST")]
+        public IActionResult Delete(int? id)
+        {
+            Event e = _context.Event.SingleOrDefault(a => a.EventID == id);
+
+            if (_userManager.GetUserName(User) == e.EventName)
+            {
+                return View(e);
+            }
+            return RedirectToAction(nameof(HomeController.Index), "Home");
+        }
+
+
+        [HttpPost]
+        [Authorize(Roles = "ARTIST")]
+        public IActionResult Delete(Event e)
+        {
+            _context.Event.Remove(e);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(HomeController.Index), "Home");
+        }
     }
+}  
+            
+
+    
 
     
 
