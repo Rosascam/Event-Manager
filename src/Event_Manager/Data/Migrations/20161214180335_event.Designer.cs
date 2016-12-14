@@ -8,8 +8,8 @@ using Event_Manager.Data;
 namespace Event_Manager.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20161212180933_Events")]
-    partial class Events
+    [Migration("20161214180335_event")]
+    partial class @event
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -73,13 +73,15 @@ namespace Event_Manager.Data.Migrations
                     b.Property<int>("EventID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("EventName");
+
+                    b.Property<string>("Name");
+
                     b.Property<DateTime>("date");
 
                     b.Property<string>("genre");
 
                     b.Property<string>("location");
-
-                    b.Property<DateTime>("time");
 
                     b.HasKey("EventID");
 

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Event_Manager.Data.Migrations
 {
-    public partial class Events : Migration
+    public partial class @event : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,10 +15,11 @@ namespace Event_Manager.Data.Migrations
                 {
                     EventID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    EventName = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
                     date = table.Column<DateTime>(nullable: false),
                     genre = table.Column<string>(nullable: true),
-                    location = table.Column<string>(nullable: true),
-                    time = table.Column<DateTime>(nullable: false)
+                    location = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
