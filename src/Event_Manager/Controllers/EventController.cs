@@ -29,7 +29,6 @@ namespace Event_Manager.Controllers
         public IActionResult Create()
         {
             return View();
-
         }
 
         [HttpPost]

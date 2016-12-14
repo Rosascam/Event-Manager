@@ -1,7 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<Event_Manager.Models.Event>
+@{
+    ViewData["Title"] = "Albums";
 }
-
 
 <div class="container">
     <h1 class="jumbotron"> Event Manager</h1>
@@ -10,32 +10,54 @@
 
     
     <table class="table">
-
         <thead>
             <tr>
                 <th>
-                    <a>Event</a>
+                    <a>Name</a>
+                </th>
+                <th>
+                    <a>Artist Name</a>
+                </th>
+                <th>
+                    <a>Date and Time</a>
+                </th>
+                <th>
+                    <a>Location</a>
+                </th>
+                <th>
+                    <a>Genre</a>
                 </th>
 
-                <th>
-                    <a asp-action="Details" asp-route-sortOrder="@ViewBag">Artist</a>
-                </th>
-
-                <th>
-                    <a asp-action="Details" asp-route-sortOrder="@ViewBag">Genre</a>
-                </th>
-
-                <th>
-                    <a asp-action="Details" asp-route-sortOrder="@ViewBag">Date</a>
-                </th>
-
-                <th>
-                    <a asp-action="Details" asp-route-sortOrder="@ViewBag">Time</a>
-                </th>
             </tr>
         </thead>
 
-        </table>
+        @foreach (var events in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => events.Name)</td>
+                <td>@Html.DisplayFor(modelItem => events.EventName)</td>
+                <td>@Html.DisplayFor(modelItem => events.date)</td>
+                <td>@Html.DisplayFor(modelItem => events.location)</td>
+                <td>@Html.DisplayFor(modelItem => events.genre)</td>
+                <td>
+                    
+                        <a class="btn btn-sm btn-default" asp-controller="Events" asp-action="Update" asp-route-id="@events.EventID">Edit</a>
+          
+                   
+                        <a class="btn btn-sm btn-default" asp-controller="Events" asp-action="ReadEvents" asp-route-id="@events.EventID">Details</a>
+                    
+                        <a class="btn btn-sm btn-default" asp-controller="Events" asp-action="Delete" asp-route-id="@events.EventID">Delete</a>
+                   
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+
+
+    
 
        <a asp-controller="Event" asp-action="Create" class="btn btn-info">Create Event</a>
 
