@@ -55,6 +55,7 @@ namespace Event_Manager.Controllers
             }
             return View();
         }
+
         [Authorize]
 
         public IActionResult ReadEvents(int? id)
