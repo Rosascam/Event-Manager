@@ -4,20 +4,23 @@
 }
 
 <div class="container">
-    <h1 class="jumbotron"> Event Manager</h1>
+    <h1 class="jumbotron"><span class="glyphicon glyphicon-calendar"></span> Event Manager</h1>
 
     <h2> All Upcoming Events</h2>
 
+    <br>
 
     <form asp-action="Index" method="get">
         <div class="form-actions no-color">
             <p>
                 Search events: <input type="text" name="searchString" value="@ViewData["currentFilter"]" />
-                <input type="submit" value="Search" class="btn btn-default" />
+                <input type="submit" value="Search" class="btn btn-info" />
             </p>
 
         </div>
     </form>
+
+    <br>
     
     <table class="table">
         <thead>

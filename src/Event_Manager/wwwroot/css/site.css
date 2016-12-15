@@ -11,6 +11,15 @@ table, th, td {
    border: 2px solid white;
 }
 
+a {
+    color:black;
+}
+
+.navbar-inverse {
+    background-color: black;
+    border-color: white;
+    font-size: large;
+}
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
