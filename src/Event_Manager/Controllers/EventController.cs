@@ -24,7 +24,7 @@ namespace Event_Manager.Controllers
             _userManager = userManager;
         }
                
-        [Authorize(Roles = "ARTIST")]
+        //[Authorize(Roles = "ARTIST")]
 
         public IActionResult Create()
         {
@@ -32,7 +32,7 @@ namespace Event_Manager.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "ARTIST")]
+        //[Authorize(Roles = "ARTIST")]
         public IActionResult Create(Event addNewEvent)
         {
             string eventName = "";
@@ -65,7 +65,7 @@ namespace Event_Manager.Controllers
             return View(e);
         }
 
-        [Authorize(Roles = "ARTIST")]
+        //[Authorize(Roles = "ARTIST")]
         public IActionResult Update(int? id)
         {
 
@@ -79,7 +79,7 @@ namespace Event_Manager.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "ARTIST")]
+        //[Authorize(Roles = "ARTIST")]
         public IActionResult Update(Event e)
         {
             string artistName = "";
@@ -102,7 +102,7 @@ namespace Event_Manager.Controllers
             return View();
         }
 
-        [Authorize(Roles = "ARTIST")]
+        //[Authorize(Roles = "ARTIST")]
         public IActionResult Delete(int? id)
         {
             Event e = _context.Event.SingleOrDefault(a => a.EventID == id);
@@ -116,7 +116,7 @@ namespace Event_Manager.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = "ARTIST")]
+        //[Authorize(Roles = "ARTIST")]
         public IActionResult Delete(Event e)
         {
             _context.Event.Remove(e);
